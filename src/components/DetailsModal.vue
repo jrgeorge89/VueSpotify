@@ -8,8 +8,7 @@
                 </div>
                 <div class="modal-body">
                     <div v-if="modalType === 'track'" class="d-flex">
-                        <img :src="modalData.album.images[0].url" alt="Track Image" class="img-fluid me-3"
-                            style="max-height: 200px; max-width: 200px;">
+                        <img :src="modalData.album.images[0].url" alt="Track Image" class="img-fluid me-3 track-image">
                         <div>
                             <h5>{{ modalData.name }}</h5>
                             <p>Artista: {{ modalData.artists[0].name }}</p>
@@ -18,13 +17,13 @@
                         </div>
                     </div>
                     <div v-if="modalType === 'track'">
-                        <audio ref="audioPlayer" controls :src="modalData.preview_url" class="w-100 mt-3"></audio>
+                        <audio ref="audioPlayer" controls :src="modalData.preview_url"
+                            class="w-100 mt-3 audio-player"></audio>
                         <button class="btn btn-primary mt-3" @click="$emit('toggleFavorite', modalData)">Añadir a
                             favoritos</button>
                     </div>
                     <div v-if="modalType === 'artist'" class="d-flex">
-                        <img :src="modalData.images[0].url" alt="Artist Image" class="img-fluid me-3"
-                            style="max-height: 200px; max-width: 200px;">
+                        <img :src="modalData.images[0].url" alt="Artist Image" class="img-fluid me-3 artist-image">
                         <div>
                             <h5>{{ modalData.name }}</h5>
                             <p>Géneros: {{ modalData.genres.join(', ') }}</p>
@@ -33,8 +32,7 @@
                         </div>
                     </div>
                     <div v-if="modalType === 'album'" class="d-flex">
-                        <img :src="modalData.images[0].url" alt="Album Image" class="img-fluid me-3"
-                            style="max-height: 200px; max-width: 200px;">
+                        <img :src="modalData.images[0].url" alt="Album Image" class="img-fluid me-3 album-image">
                         <div>
                             <h5>{{ modalData.name }}</h5>
                             <p>Artista: {{ modalData.artists[0].name }}</p>
@@ -82,3 +80,52 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #333333;
+}
+
+.modal-title {
+    color: #1db954;
+}
+
+.track-image,
+.artist-image,
+.album-image {
+    max-height: 200px;
+    max-width: 200px;
+    border-radius: 10px;
+}
+
+.audio-player {
+    background-color: #282828;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #1db954;
+    border-color: #1db954;
+}
+
+.btn-primary:hover {
+    background-color: #1ed760;
+    border-color: #1ed760;
+}
+
+.btn-secondary {
+    background-color: #555555;
+    border-color: #555555;
+}
+
+.btn-secondary:hover {
+    background-color: #666666;
+    border-color: #666666;
+}
+</style>

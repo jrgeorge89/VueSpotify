@@ -1,24 +1,26 @@
 <template>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Artista</th>
-                <th>Fecha de lanzamiento</th>
-                <th>Total de pistas</th>
-                <th>Detalles</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="album in albums" :key="album.id">
-                <td>{{ album.name }}</td>
-                <td>{{ album.artists[0].name }}</td>
-                <td>{{ album.release_date }}</td>
-                <td>{{ album.total_tracks }}</td>
-                <td><a href="#" @click.prevent="$emit('showDetails', 'album', album)">Ver detalles</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Album</th>
+                    <th>Artist</th>
+                    <th>Release Date</th>
+                    <th>Total Tracks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(album, index) in albums" :key="album.id" @click="$emit('showDetails', 'album', album)">
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ album.name }}</td>
+                    <td>{{ album.artists[0].name }}</td>
+                    <td>{{ album.release_date }}</td>
+                    <td>{{ album.total_tracks }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>

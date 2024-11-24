@@ -1,24 +1,24 @@
 <template>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Género</th>
-                <th>Seguidores</th>
-                <th>Popularidad</th>
-                <th>Detalles</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="artist in artists" :key="artist.id">
-                <td>{{ artist.name }}</td>
-                <td>{{ artist.genres[0] }}</td>
-                <td>{{ artist.followers.total }}</td>
-                <td>{{ artist.popularity }}</td>
-                <td><a href="#" @click.prevent="$emit('showDetails', 'artist', artist)">Ver detalles</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Artist</th>
+                    <th>Genres</th>
+                    <th>Followers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(artist, index) in artists" :key="artist.id" @click="$emit('showDetails', 'artist', artist)">
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ artist.name }}</td>
+                    <td>{{ artist.genres.join(', ') }}</td>
+                    <td>{{ artist.followers.total.toLocaleString() }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>

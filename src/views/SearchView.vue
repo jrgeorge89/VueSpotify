@@ -1,31 +1,43 @@
 <template>
-  <div class="container mt-4">
-    <h1 class="mb-4">Vue Spotify</h1>
+  <div class="container-fluid">
+    <h1 class="mb-4 text-center">Vue Spotify</h1>
     
     <SearchForm @search="search" v-model="query" />
     
-    <div class="section">
-      <h2>Pistas</h2>
-      <TrackTable :tracks="paginatedTracks" @showDetails="showDetails" />
-      <Paginator :currentPage="currentPageTracks" :totalPages="totalPagesTracks" @changePage="changePageTracks" />
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="section">
+          <h2>Pistas</h2>
+          <TrackTable :tracks="paginatedTracks" @showDetails="showDetails" />
+          <Paginator :currentPage="currentPageTracks" :totalPages="totalPagesTracks" @changePage="changePageTracks" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="section">
+          <h2>Artistas</h2>
+          <ArtistTable :artists="paginatedArtists" @showDetails="showDetails" />
+          <Paginator :currentPage="currentPageArtists" :totalPages="totalPagesArtists" @changePage="changePageArtists" />
+        </div>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>Artistas</h2>
-      <ArtistTable :artists="paginatedArtists" @showDetails="showDetails" />
-      <Paginator :currentPage="currentPageArtists" :totalPages="totalPagesArtists" @changePage="changePageArtists" />
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="section">
+          <h2>Álbumes</h2>
+          <AlbumTable :albums="paginatedAlbums" @showDetails="showDetails" />
+          <Paginator :currentPage="currentPageAlbums" :totalPages="totalPagesAlbums" @changePage="changePageAlbums" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="section">
+          <h2>Favoritos</h2>
+          <Favorites :tracks="favoriteTracks" @showDetails="showDetails" />
+        </div>
+      </div>
     </div>
-
-    <div class="section">
-      <h2>Álbumes</h2>
-      <AlbumTable :albums="paginatedAlbums" @showDetails="showDetails" />
-      <Paginator :currentPage="currentPageAlbums" :totalPages="totalPagesAlbums" @changePage="changePageAlbums" />
-    </div>
-
-    <Favorites :tracks="favoriteTracks" />
 
     <DetailsModal :modalType="modalType" :modalData="modalData" :modalTitle="modalTitle" :favoriteTracks="favoriteTracks" @toggleFavorite="toggleFavorite" />
-  
   </div>
 </template>
 
@@ -131,17 +143,49 @@ export default {
 };
 </script>
 
-<style>
-.container {
-  background-color: #caf5a8;
+<style scoped>
+.container-fluid {
+  background-color: #121212;
+  color: #ffffff;
+  padding: 20px;
 }
+
 .section {
-  margin-bottom: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
+
+.section h2 {
+  color: #1db954;
+}
+
 .table {
   background-color: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
 }
-a {
-  color: #1db954;
+
+.table th, .table td {
+  color: #ffffff;
+}
+
+.table th {
+  background-color: #282828;
+}
+
+.table tbody tr:hover {
+  background-color: #333333;
+}
+
+.btn-primary {
+  background-color: #1db954;
+  border-color: #1db954;
+}
+
+.btn-primary:hover {
+  background-color: #1ed760;
+  border-color: #1ed760;
 }
 </style>

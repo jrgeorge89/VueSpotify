@@ -17,7 +17,9 @@ export default {
     return {
       backgroundStyle: {
         backgroundImage: `url(${fondoImage})`,
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
+        position: 'relative',
+        zIndex: 1
       }
     };
   },
@@ -26,3 +28,31 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+</style>
